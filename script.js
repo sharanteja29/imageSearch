@@ -1,6 +1,6 @@
 // create your own API access key and replace the key added below.
 
-const accessKey = "rq9OoN6Qq_Gv1n_Cdk_S0fFx2Km6rHHbbfQyhKxGOgo";
+const accessKey = "KQkvoqJJzPCMu9_bTo6a4IDorFMFbacrp0OTE-XTpGE";
 
 const searchForm = document.getElementById("search-form");
 const searchBox = document.getElementById("search-box");
@@ -11,20 +11,20 @@ const showMoreBtn = document.getElementById("show-more-btn");
 let keyword = "";
 let page = 1;
 
-async function searchImages(){
+async function searchImages() {
     keyword = searchBox.value;
     const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${accessKey}&per_page=12`;
 
     const response = await fetch(url);
     const data = await response.json();
 
-    if(page === 1){
+    if (page === 1) {
         searchResult.innerHTML = "";
     }
 
     const results = data.results;
 
-    results.map((result) =>{
+    results.map((result) => {
         const image = document.createElement("img");
         image.src = result.urls.small;
         const imageLink = document.createElement("a");
@@ -37,13 +37,13 @@ async function searchImages(){
     showMoreBtn.style.display = "block";
 }
 
-searchForm.addEventListener("submit", (e) =>{
+searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     page = 1;
     searchImages();
 });
 
-// showMoreBtn.addEventListener("click", ()=>{
-//     page++;
-//     searchImages();
-// })
+showMoreBtn.addEventListener("click", () => {
+    page++;
+    searchImages();
+})
